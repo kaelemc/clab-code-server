@@ -1,4 +1,7 @@
-FROM node:24-alpine AS builder
+ARG BUILDPLATFORM
+ARG TARGETPLATFORM
+
+FROM --platform=$BUILDPLATFORM node:24-alpine AS builder
 
 RUN apk add --no-cache git curl jq
 
@@ -7,10 +10,10 @@ RUN LATEST_TAG=$(curl -s https://api.github.com/repos/srl-labs/vscode-containerl
 
 WORKDIR /vscode-containerlab
 
-RUN npm install
+RUN --mount=type=cache,target=/root/.npm npm install
 RUN npm run package
 
-FROM codercom/code-server:latest
+FROM --platform=$TARGETPLATFORM codercom/code-server:latest
 
 COPY --from=builder /vscode-containerlab/*.vsix /vsix/
 COPY config.yaml /home/coder/.config/code-server/config.yaml
