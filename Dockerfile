@@ -11,4 +11,4 @@ COPY config.yaml /config.yaml
 
 EXPOSE 443
 
-RUN code-server --install-extension extension.vsix
+RUN sudo code-server --install-extension extension.vsix --extensions-dir /extensions
