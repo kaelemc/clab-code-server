@@ -1,4 +1,4 @@
-bind-addr: 0.0.0.0:443
+bind-addr: 0.0.0.0:8080
 auth: password
 password: clab
-cert: true
+cert: false
