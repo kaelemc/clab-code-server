@@ -7,8 +7,7 @@ RUN URL=$(curl -s https://api.github.com/repos/srl-labs/vscode-containerlab/rele
     | grep vsix \
     | cut -d'"' -f4) && curl -L -o extension.vsix "$URL"
 
-# COPY config.yaml /home/coder/.config/code-server/config.yaml
-COPY config.yaml /root/.config/code-server/config.yaml
+COPY config.yaml /config.yaml
 
 EXPOSE 443
 
