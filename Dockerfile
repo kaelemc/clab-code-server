@@ -9,6 +9,6 @@ RUN URL=$(curl -s https://api.github.com/repos/srl-labs/vscode-containerlab/rele
 
 COPY config.yaml /home/coder/.config/code-server/config.yaml
 
-EXPOSE 8080
+EXPOSE 443
 
 RUN code-server --install-extension extension.vsix
