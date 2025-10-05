@@ -7,8 +7,6 @@ RUN URL=$(curl -s https://api.github.com/repos/srl-labs/vscode-containerlab/rele
     | grep vsix \
     | cut -d'"' -f4) && curl -L -o extension.vsix "$URL"
 
-COPY config.yaml /config.yaml
-
 EXPOSE 8080
 
 RUN sudo code-server --install-extension extension.vsix --extensions-dir /extensions
